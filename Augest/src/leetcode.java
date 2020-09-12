@@ -38,6 +38,8 @@ public class leetcode {
         int smallestRepunitDivByKRes = leet.smallestRepunitDivByK(1);
         System.out.println("smallestRepunitDivByKRes = "+smallestRepunitDivByKRes);
 
+        int titleToNumberRes = leet.titleToNumber("B");
+        System.out.println("titleToNumberRes = "+titleToNumberRes);
 
     }
 
@@ -457,5 +459,84 @@ public class leetcode {
             else return false;
         }
         return hasPathSum(root.left, sum - root.val) || hasPathSum(root.right, sum - root.val);
+    }
+
+    //唯一摩尔斯密码词   set内不包含重复的元素
+    public int uniqueMorseRepresentations(String[] words) {
+        String[] code = {".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..","--","-.","---",".--.","--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--.."};
+        Set<String> set = new HashSet();
+
+        for (int i=0;i < words.length; i++){
+            StringBuilder stringBuilder = new StringBuilder();
+            for ( char c : words[i].toCharArray()){
+                stringBuilder.append(code[c - 'a']);
+            }
+            set.add(stringBuilder.toString());
+        }
+
+        return set.size();
+    }
+    //Excel表序列号  26进制
+    public int titleToNumber(String s) {
+        int re = 0;
+        int b = 0;
+        for (int i = s.length()-1;i>=0; i--){
+            int dis = (s.charAt(i) - 'A') + 1;
+            re += (int )Math.pow(26, b) * dis;
+            b++;
+        }
+        return  re;
+    }
+
+    /*阶乘后尾数中0的个数
+      一个树乘上10，尾数就会多一个零 ---> 计算乘几个10即可判断尾数0个数
+      10 = 2 * 5 ----> 判断2 和 5组合个数
+      2的倍数比5多  ---> 计算5的倍数的个数
+      每隔5个数有一个5，25个数有2个5，125个有3个5。。。。
+      总5个数 = n/5 + n/25 + n/125 + ...
+     */
+    public int trailingZeroes(int n) {
+        int re = 0;
+        while (n / 5 != 0){
+            re += n / 5;
+            n = n / 5;
+        }
+        return re;
+    }
+
+    //旋转数组
+    /*
+     * 1.新建数组，转移后位置为 （i + k） % nums.length
+     *
+     */
+    public void rotate(int[] nums, int k) {
+        int[] Renum = new int[nums.length];
+
+        for (int i = 0 ; i < nums.length; i++){
+            int position = (i + k) % nums.length;
+            Renum[position] = nums[i];
+        }
+
+        for (int i = 0; i < nums.length; i++){
+            nums[i] = Renum[i];
+        }
+    }
+
+    //颠倒二进制位
+    /*
+     *   十进制位数颠倒: re = re * 10 + n % 10; n = n / 10;
+     *   二进制位数颠倒： re = re * 2 + n % 2; n = n / 2;
+     *   问题：1.补零 2.负数区域
+     *   -----> 使用位运算
+     */
+
+    public int reverseBits(int n) {
+        int re = 0;
+        for (int i = 0 ; i< 32; i++){
+            re = (re << 1) + (n & 1);
+            n = n >> 1;
+        }
+
+        return  re;
     }
 }
