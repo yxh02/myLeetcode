@@ -43,28 +43,32 @@ public class leetcode {
 
     }
 
+
+
+
+
     //二进制求和
     public String addBinary(String a, String b){
-        StringBuffer res = new StringBuffer();
-        int carry = 0;
-        int length = Math.max(a.length(), b.length());
-
-        for (int i = 0; i < length; i++){
-            carry += i<a.length()? (a.charAt(a.length() - 1 - i)- '0') : 0;
-            carry += i<b.length()? (b.charAt(b.length() - 1 - i)- '0') : 0;
-
-            res.append((char)(carry % 2 + '0'));
-
-            carry /= 2;
-        }
-
-        if (carry>0){
-            res.append('1');
-        }
-
-        res.reverse();
-
-        return res.toString();
+//        StringBuffer res = new StringBuffer();
+//        int carry = 0;
+//        int length = Math.max(a.length(), b.length());
+//
+//        for (int i = 0; i < length; i++){
+//            carry += i<a.length()? (a.charAt(a.length() - 1 - i)- '0') : 0;
+//            carry += i<b.length()? (b.charAt(b.length() - 1 - i)- '0') : 0;
+//
+//            res.append((char)(carry % 2 + '0'));
+//
+//            carry /= 2;
+//        }
+//
+//        if (carry>0){
+//            res.append('1');
+//        }
+//
+//        res.reverse();
+//
+//        return res.toString();
     }
 
     //x的平方根 1.数学替换法：x根号 = x^(1/2) = (e^(lnx))^(1/2) = (e)^(1/2 * lnx)
