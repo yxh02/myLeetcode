@@ -49,6 +49,7 @@ public class leetcode {
 
     //二进制求和
     public String addBinary(String a, String b){
+        //test yxhbranch
         StringBuffer res = new StringBuffer();
         int carry = 0;
         int length = Math.max(a.length(), b.length());
